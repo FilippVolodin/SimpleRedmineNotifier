@@ -131,7 +131,7 @@ void show_notifications(const QString& server, const QMap<int, Issue>& issue_map
 class TimerTask
 {
 public:
-    TimerTask(Settings& settings) : m_settings(settings) {}
+    explicit TimerTask(Settings& settings) : m_settings(settings) {}
     void operator()()
     {
         QNetworkAccessManager manager;
@@ -241,8 +241,12 @@ int main(int argc, char* argv[])
 
     Settings settings = load_settings();
 
+    // First request
+    TimerTask{ settings }();
+
+    // Next requests
     QTimer timer;
-    QObject::connect(&timer, &QTimer::timeout, TimerTask(settings));
+    QObject::connect(&timer, &QTimer::timeout, TimerTask{ settings });
     timer.start(settings.interval * 1000);
 
     bool res = app.exec();
