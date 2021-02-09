@@ -4,7 +4,7 @@ Simple Remine Notifier runs in background, checks updated issues and sends a not
 
 ## Example
 
-![notification_example.png](doc\notification_example.png?raw=true)
+![notification example](doc/notification_example.png?raw=true)
 
 ## Settings
 
